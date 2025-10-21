@@ -131,31 +131,59 @@ img {
 .profile__perfil img{
   width: 80px;
 }
+
+
 .profile__border {
   position: relative;
   justify-self: center;
-  width: 150px; /* 🔹 más grande */
-  height: 150px; /* 🔹 más grande */
+  width: 160px; /* más grande */
+  height: 160px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
   background: linear-gradient(135deg,
               hsl(var(--hue), var(--sat), var(--lig)),
               hsl(250, 66%, 75%),
               hsl(174, 63%, 62%));
-  box-shadow: 0 0 25px hsla(var(--hue), var(--sat), var(--lig), 0.3);
+  box-shadow: 0 0 30px hsla(var(--hue), var(--sat), var(--lig), 0.3);
   overflow: hidden;
 }
 
 .profile__border::before {
   content: "";
   position: absolute;
-  inset: 6px; /* 🔹 grosor del borde */
+  inset: 6px; /* grosor del borde */
   background-color: var(--container-color);
   border-radius: 50%;
   z-index: 0;
 }
+
+.profile__perfil {
+  position: relative;
+  width: 140px; /* más grande que antes */
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.profile__perfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile__perfil:hover img {
+  transform: scale(1.08); /* ligero zoom */
+  box-shadow: 0 0 20px hsla(var(--hue), var(--sat), var(--lig), 0.5);
+}
+
 
 .profile__perfil {
   position: relative;
