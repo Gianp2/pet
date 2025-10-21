@@ -3,20 +3,11 @@
 
 /*=============== VARIABLES CSS ===============*/
 :root {
-  /*========== Colors ==========*/
-  /*Color mode HSL(hue, saturation, lightness)*/
-  /*
-      Blue: hsl(207, 90%, 61%)
-      Purple: hsl(250, 66%, 75%)
-      Pink: hsl(356, 66%, 75%)
-      Teal: hsl(174, 63%, 62%)
-  */
-
   --hue: 207;
   --sat: 90%;
   --lig: 61%;
   --first-color: hsl(var(--hue), var(--sat), var(--lig));
-  --first-color-alt: hsl(var(--hue), var(--sat), 57%); /* -4% */
+  --first-color-alt: hsl(var(--hue), var(--sat), 57%);
   --title-color: hsl(var(--hue), 12%, 15%);
   --text-color: hsl(var(--hue), 12%, 45%);
   --text-color-light: hsl(var(--hue), 8%, 75%);
@@ -24,8 +15,6 @@
   --body-color: hsl(var(--hue), 100%, 99%);
   --container-color: #fff;
 
-  /*========== Font and typography ==========*/
-  /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: 'Poppins', sans-serif;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;
@@ -56,7 +45,10 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
-  transition: .3s; /* For animation dark mode */
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1, h2, h3 {
@@ -77,47 +69,52 @@ img {
   height: auto;
 }
 
-/*=============== THEME ===============*/
-
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 968px;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
-.grid {
-  display: grid;
-  gap: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 /*=============== PROFILE ===============*/
 .profile {
   position: relative;
   padding-top: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .profile__container {
   row-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 968px;
 }
 
 .profile__data {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  width: 100%;
 }
 
-/* 🔹 FOTO DE PERFIL SIN BORDES - MÁS GRANDE */
 .profile__perfil {
   position: relative;
-  width: 160px; /* 🔹 MÁS GRANDE */
-  height: 160px; /* 🔹 MÁS GRANDE */
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.2rem;
-  /* 🔹 SIN BORDES - Solo sombra suave */
+  margin: 0 auto 1rem;
   box-shadow: 0 8px 32px hsla(var(--hue), var(--sat), var(--lig), 0.2);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -128,11 +125,10 @@ img {
 }
 
 .profile__perfil img {
-  width: 100%; /* 🔹 OCUPA TODO EL ESPACIO */
+  width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  /* 🔹 SIN BORDES - Solo la imagen pura */
 }
 
 .profile__name {
@@ -163,13 +159,19 @@ img {
 }
 
 .profile__info {
-  grid-template-columns: repeat(3, max-content);
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  column-gap: 2.5rem;
+  column-gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .profile__info-group {
   text-align: center;
+  flex: 1;
+  min-width: 80px;
 }
 
 .profile__info-number {
@@ -185,16 +187,20 @@ img {
 .profile__buttons,
 .profile__buttons-small {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .profile__buttons {
-  column-gap: 1rem;
+  row-gap: 1rem;
 }
 
 .profile__buttons-small {
-  column-gap: .25rem;
+  row-gap: .5rem;
 }
 
 /*=============== BUTTONS ===============*/
@@ -368,9 +374,133 @@ img {
   background-color: var(--body-color);
 }
 
+
+/* Card general */
+.allergies-card {
+  background-color: var(--container-color);
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Título */
+.allergies-card .profile__info-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--first-color);
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Contenedor de chips */
+.allergies__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Card general */
+.allergies-card {
+  background-color: var(--container-color);
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Título */
+.allergies-card .profile__info-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000; /* negro en tema claro */
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+/* Contenedor de chips */
+.allergies__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Card general */
+.allergies-card {
+  background-color: var(--container-color);
+  padding: 12px 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px var(--shadow-light);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Título */
+.allergies-card .profile__info-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000; /* negro en tema claro */
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: color 0.3s;
+}
+
+/* Contenedor de chips */
+.allergies__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Chips individuales */
+.allergy-chip {
+  background-color: var(--container-color);
+  color: #000; /* texto negro en tema claro */
+  border: 1px solid rgba(255, 0, 0, 0.3); /* borde rojo tenue */
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px; /* separa icono del texto */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+/* Modo oscuro */
+body.dark-theme .allergies-card {
+  box-shadow: 0 4px 8px var(--shadow-dark);
+}
+
+body.dark-theme .allergies-card .profile__info-title {
+  color: #fff; /* título blanco en modo oscuro */
+}
+
+body.dark-theme .allergy-chip {
+  color: #fff; /* texto blanco en modo oscuro */
+  border-color: rgba(255, 0, 0, 0.6); /* borde rojo más visible en oscuro */
+}
+
+
+
 /*=============== FOOTER ===============*/
 .footer {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 968px;
+  margin: 3rem auto 2rem;
 }
 
 .footer__copy {
@@ -381,12 +511,23 @@ img {
 }
 
 /*=============== SCROLL BAR ===============*/
+.dark-theme::-webkit-scrollbar {
+  background-color: hsl(var(--hue), 8%, 16%);
+}
 
-/* theme */
+.dark-theme::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--hue), 8%, 24%);
+}
+
+.dark-theme::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--hue), 8%, 32%);
+}
+
+/*=============== THEME ===============*/
 .change-theme {
   position: absolute;
   top: 1.5rem;
-  right: 0;
+  right: 1rem;
   font-size: 1.25rem;
   color: var(--title-color);
   cursor: pointer;
@@ -404,7 +545,6 @@ body.dark-theme {
   --container-color: hsl(var(--hue), 24%, 12%);
 }
 
-/* Colors changes in some parts of the website, in light theme */
 .dark-theme .button__gray {
   background-color: var(--container-color);
 }
@@ -417,41 +557,77 @@ body.dark-theme {
   background-color: var(--container-color);
 }
 
-.dark-theme::-webkit-scrollbar {
-  background-color: hsl(var(--hue), 8%, 16%);
+
+.accordion-content li {
+  margin-bottom: 0.4rem;
 }
 
-.dark-theme::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--hue), 8%, 24%);
+/* 🌙 Modo oscuro */
+body.dark-theme .accordion-btn {
+  background-color: hsl(var(--hue), 24%, 20%);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
 }
 
-.dark-theme::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--hue), 8%, 32%);
+body.dark-theme .accordion-btn:hover {
+  background-color: hsl(var(--hue), 24%, 28%);
+}
+
+body.dark-theme .accordion-content {
+  background-color: hsl(var(--hue), 24%, 14%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 /*=============== BREAKPOINTS ===============*/
-/* For small devices */
 @media screen and (max-width: 320px) {
   .container {
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
   }
   
   .profile__info {
-    column-gap: 1.5rem;
+    column-gap: 1rem;
+    max-width: 280px;
   }
   
   .profile__buttons {
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 0.8rem;
   }
   
   .skills__box {
     column-gap: 1rem;
   }
+  
+  .profile__perfil {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .accordion-btn,
+  .accordion-content {
+    max-width: 90%;
+    max-width: 220px;
+  }
 }
 
-/* For medium devices */
+@media screen and (max-width: 480px) {
+  .accordion-btn {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .accordion-content {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    line-height: 1.4;
+  }
+
+  .accordion-content ul {
+    padding-left: 1rem;
+  }
+}
+
 @media screen and (min-width: 576px) {
   .projects__content {
     grid-template-columns: 332px;
@@ -461,6 +637,20 @@ body.dark-theme {
   .filters__content {
     width: 332px;
     margin: 3rem auto;
+  }
+  
+  .profile__info {
+    max-width: 400px;
+  }
+  
+  .profile__buttons,
+  .profile__buttons-small {
+    max-width: 400px;
+  }
+  
+  .accordion-btn,
+  .accordion-content {
+    max-width: 300px;
   }
 }
 
@@ -476,7 +666,6 @@ body.dark-theme {
   }
 }
 
-/* For large devices */
 @media screen and (min-width: 992px) {
   .container {
     margin-left: auto;
@@ -492,9 +681,8 @@ body.dark-theme {
     padding-top: 4rem;
   }
   
-  /* 🔹 MÁS GRANDE EN DESKTOP */
   .profile__perfil {
-    width: 180px; /* 🔹 AÚN MÁS GRANDE */
+    width: 180px;
     height: 180px;
   }
   
@@ -504,6 +692,7 @@ body.dark-theme {
   
   .profile__info {
     column-gap: 3rem;
+    max-width: 600px;
   }
   
   .profile__info-description {
@@ -512,6 +701,7 @@ body.dark-theme {
   
   .profile__buttons {
     column-gap: 2rem;
+    max-width: 600px;
   }
   
   .projects__content {
